@@ -80,7 +80,7 @@ You may use Optimizers coming with pytorch by default like this:
 Testproblem: mnist_mlp
 Optimizer: SGD
 lr: 0.01
-momentum: [0.99, 0.79]
+momentum: [0.99]
 nesterov: False
 num_epochs: 1
 batch_size: 200
@@ -93,8 +93,9 @@ sbatch_partition: test
 sbatch_time: 15:00
 ```
 
-where ```lr: [0.01]``` would also be accepted.
+of course ```lr: [0.01]``` or ```nesterov: [False]``` would also be accepted and considered singleton values.
 
+In case of multiple Hyperparameter values the ```my_configurations.txt``` would look something like this:
 ```
 Testproblem: mnist_mlp
 Optimizer: SGD
@@ -112,7 +113,8 @@ sbatch_partition: test
 sbatch_time: 15:00
 ```
 
-In this case we have not specified an outputfolder name. Therefore a default ouput folder will be created in the current working directory.
+In both these cases we have not specified an outputfolder name. Therefore a default ouput folder will be created in the current working directory.
+You may also define a output folder name. In this folder only the **output**
 (See example below on how that works)
 
 #### 4.2.) Using custom (user written) Optimizer
