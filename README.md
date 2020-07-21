@@ -28,9 +28,9 @@ Testprobmlem Name - See Deepobs Documentation for available Testproblems
 Optimizer class Name - Name of the optimizer Class
 Optimizer Path - Path to where the optimizer is stored
 Optimizer module - Module description in Python import style
-Set of Hyperparameters for the Optimizer - Hyperparamters the optimizer uses
-Assitional Paramters for Deeobs Trainingphase
-Sbatch Parameters
+Set of Hyperparameters for the Optimizer - Hyperparamters which should be tested (every Combination will get tested)
+Additional Paramters for Deeobs Trainingphase - See Deepobs Documentation for Details
+Sbatch Parameters - Sbatch Parameters used for the configurations
 ```
 
 
