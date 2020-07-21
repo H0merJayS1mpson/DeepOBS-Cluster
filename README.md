@@ -14,8 +14,8 @@ TCML-CLuster Account.
 
 ### 1.) General Approach
 
-First you will need to generate a Configuration ```.txt``` file. 
-It contains the following:
+First you will need to generate a Configuration ```.txt``` file. Let's say we call it ```my_configurations.txt```
+It has to contain the following:
 
 ```
 Testprobmlem Name - See Deepobs Documentation for available Testproblems
@@ -29,26 +29,30 @@ Sbatch Parameters - Sbatch Parameters used for the configurations
 
 ### 2.) General info about Entries
 
-Entries should generally be structured like this:
+Entries of the ```my_configurations.txt``` should generally be structured like this:
 
 ```
 key: value
 ```
+#### On Hyperparameter values
 
+Given Multiple Hyperparameters the tool will run every possible combination of the given Hyperparamters (cartesian product).
 Be aware, that you should look up the correct types for the ```value``` as the wrong types will cause a runtime error.
-every ```value``` will be combined with every other ```value``` which is not a singelton. Resulting in every possible combination of given values to be run.
+Every ```value``` will be combined with every other ```value``` which is a Hyperparameter. Resulting in every possible combination of given Hyperparameter values to be run.
 
 ### 3.) Values and how they should look like
 
-Singelton values have to be specified as in:
+Every singelton value can be specified as in:
 
 ```some key: x``` 
-or
+
+Or in case of Hyperparameter values may also be specified like:
 
 ```some key: [x]``` 
 
+x being of any correct type with respect to the key. 
 
-Non singelton Float or Boolean values may be specified in the following ways:
+Non singelton Float, Integer or Boolean values may be specified in the following ways:
 
 #### 1. List- or Array-like
 
@@ -62,8 +66,8 @@ representing:
 
 ```(lower, upper, increment)``` 
 
-So for example ```(0.1, 0.5, 0.1)``` would result in the parameters ```[0.1, 0.2, 0.3, 0.4, 0.5]``` to be run in every 
-possible combination with the other parameters.
+So for example ```(0.1, 0.5, 0.1)``` would result in the Hyperparameters ```[0.1, 0.2, 0.3, 0.4, 0.5]``` to be run in every 
+possible combination with the other Hyperparameters.
 
 ### 4.) Examples and Optimizers
 
@@ -71,6 +75,25 @@ possible combination with the other parameters.
 
 Let's take a look at an example ```my_configurations.txt``` file using pytorch build-in Optimizer ```SGD```
 You may use Optimizers coming with pytorch by default like this:
+
+```
+Testproblem: mnist_mlp
+Optimizer: SGD
+lr: 0.01
+momentum: [0.99, 0.79]
+nesterov: False
+num_epochs: 1
+batch_size: 200
+sbatch_job_name: some_experiment_name
+sbatch_nnodes: 1
+sbatch_ntasks: 1
+sbatch_cpus_per_task: 5
+sbatch_gres: gpu:1080ti:1
+sbatch_partition: test
+sbatch_time: 15:00
+```
+
+where ```lr: [0.01]``` would also be accepted.
 
 ```
 Testproblem: mnist_mlp
