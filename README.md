@@ -20,19 +20,31 @@ Give examples
 
 ### Running the Interface
 
-First you will need to generate a Configuration ```.txt``` file.
+First you will need to generate a Configuration ```.txt``` file. 
+Generally it has to be structured like this:
 
-And repeat
+```
+Testprobmlem Name - See Deepobs Documentation for available Testproblems
+Optimizer class Name
+Optimizer Path
+Optimizer module
+Set of Hyperparameters for the Optimizer
+Assitional Paramters for Deeobs Trainingphase
+Sbatch Parameters
+```
+
+
+For example it could look like this:
 
 ```
 Testproblem: mnist_mlp 
 Optimizer: SGD
-lr: [0.01, hampelmann, sonstwie]
+lr: (0.01, 0.05, 0.01)
 momentum: [0.99, 0.79]
 nesterov: False
 num_epochs: 1
 batch_size: 200
-sbatch_job_name: default
+sbatch_job_name: mnist_mlp_SGD
 sbatch_nnodes: 1
 sbatch_ntasks: 1
 sbatch_cpus_per_task: 5
