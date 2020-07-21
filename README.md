@@ -44,7 +44,7 @@ or
 
 Non singelton Float or Boolean values may be specified in the following ways:
 
-## 1.
+# 1.
 ```[x, y, z]``` 
 
 
