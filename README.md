@@ -65,7 +65,11 @@ representing:
 So for example ```(0.1, 0.5, 0.1)``` would result in the parameters ```[0.1, 0.2, 0.3, 0.4, 0.5]``` to be run in every 
 possible combination with the other parameters.
 
+### 4.) Examples and Optimizers
 
+#### 4.1.) Using a Pytorch build-in Optimizer
+
+Let's take a look at an example ```my_configurations.txt``` file using pytorch build-in Optimizer ```SGD```
 You may use Optimizers coming with pytorch by default like this:
 
 ```
@@ -84,11 +88,18 @@ sbatch_gres: gpu:1080ti:1
 sbatch_partition: test
 sbatch_time: 15:00
 ```
+
 In this case we have not specified an outputfolder name. Therefore a default ouput folder will be created in the current working directory.
+(See example below on how that works)
 
+#### 4.2.) Using custom (user written) Optimizer
 
+We could also specify a user written Optimizer which would have to be a subclass of the pytorch optimizer class (See Deeobs Documentation for further Info)
+In this case you would have to specify the ```path``` to wherever the Optimizer is located, as well as the ```optimizer class name``` and 
+the ```optimizer module```. 
+The ```optimizer module``` has to be specified in the way one would specify a Python package import. (See example)
 
-For example it could look like this:
+Then the For example your ```my_configurations.txt``` could look like this:
 
 ```
 Testproblem: mnist_mlp
