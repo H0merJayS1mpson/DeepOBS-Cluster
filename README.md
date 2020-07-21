@@ -44,8 +44,17 @@ or
 
 Non singelton Float or Boolean values may be specified in the following ways:
 
-### 1.
+#### 1. List- or Array-like
+
 ```[x, y, z]``` 
+
+#### 2. Range Notation (Float or Integer only):
+
+```(x, y, z)``` 
+
+representing:
+
+```(lower, upper, increment)``` 
 
 
 You may use Optimizers coming with pytorch by default like this:
