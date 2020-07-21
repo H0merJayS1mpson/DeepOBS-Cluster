@@ -4,10 +4,11 @@ Interface for Deeobs on TCML-Cluster
 
 ## Getting Started
 
-Copy Folder into your Repository. Or copy files into folder of your choice.
+Copy Folder into your Cluster /home/usr_name folder. Or copy files into folder of your choice.
 
 ### Prerequisites
 
+TCML-CLuster Account.
 ```
 Give examples
 ```
@@ -17,19 +18,9 @@ Give examples
 Give examples
 ```
 
-```
-dasda
-```
+### Running the Interface
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
+First you will need to generate a Configuration ```.txt``` file.
 
 And repeat
 
