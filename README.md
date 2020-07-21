@@ -37,20 +37,24 @@ Sbatch Parameters - Sbatch Parameters used for the configurations
 For example it could look like this:
 
 ```
-Testproblem: mnist_mlp 
+Testproblem: mnist_mlp
 Optimizer: SGD
-lr: (0.01, 0.05, 0.01)
+Optimizer Path: /home/hartert/optimopti/optimopti.py
+Optimizer Module: optimopti.optimopti.sgd
+lr: [0.01, 0.02, hampelmann, sonstwie]
 momentum: [0.99, 0.79]
 nesterov: False
 num_epochs: 1
 batch_size: 200
-sbatch_job_name: mnist_mlp_SGD
+sbatch_job_name: DER_JOB!
 sbatch_nnodes: 1
 sbatch_ntasks: 1
 sbatch_cpus_per_task: 5
 sbatch_gres: gpu:1080ti:1
 sbatch_partition: test
 sbatch_time: 15:00
+output: DER_outputordner
+
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
