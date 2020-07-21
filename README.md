@@ -111,7 +111,13 @@ output: user_specified_outputfolder
 
 ```
 
-## Running the Interface 
+## Running the Configurations
+
+After you set up the ```my_configurations.txt``` file as described above simply navigate to the copied folder containing the files and type 
+
+``` python3 testobs path_to_configurations_file/my_configurations.txt ```
+
+Of course you do not have to specify the path if the ```my_configurations.txt``` file is located in the same folder.
 
 
 ## For Infos on Deepobs see:
