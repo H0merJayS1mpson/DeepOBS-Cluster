@@ -21,7 +21,7 @@ Give examples
 ### Running the Interface
 
 First you will need to generate a Configuration ```.txt``` file. 
-Generally it has to be structured like this:
+It contains the following:
 
 ```
 Testprobmlem Name - See Deepobs Documentation for available Testproblems
@@ -33,6 +33,11 @@ Additional Paramters for Deeobs Trainingphase - See Deepobs Documentation for De
 Sbatch Parameters - Sbatch Parameters used for the configurations
 ```
 
+Generally it has to be structured like this:
+
+```
+key: value
+```
 
 For example it could look like this:
 
