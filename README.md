@@ -31,6 +31,45 @@ Entries should generally be structured like this:
 key: value
 ```
 
+Be aware, that you should look up the correct types for the ```value``` as the wrong types will cause a runtime error.
+every ```value``` will be combined with every other ```value``` which is not a singelton. Resulting in every possible combination of given values to be run.
+
+Singelton values have to be specified as in:
+
+```some key: x``` 
+or
+
+```some key: [x]``` 
+
+
+Non singelton Float or Boolean values may be specified in the following ways:
+
+## 1.
+```[x, y, z]``` 
+
+
+You may use Optimizers coming with pytorch by default like this:
+
+```
+Testproblem: mnist_mlp
+Optimizer: SGD
+lr: [0.01, 0.02]
+momentum: [0.99, 0.79]
+nesterov: False
+num_epochs: 1
+batch_size: 200
+sbatch_job_name: some_experiment_name
+sbatch_nnodes: 1
+sbatch_ntasks: 1
+sbatch_cpus_per_task: 5
+sbatch_gres: gpu:1080ti:1
+sbatch_partition: test
+sbatch_time: 15:00
+```
+In this case we have not specified an outputfolder name. Therefore a default ouput folder will be created in the current working directory.
+
+
+
 For example it could look like this:
 
 ```
