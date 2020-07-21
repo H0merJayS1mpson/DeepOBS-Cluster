@@ -27,7 +27,20 @@ Give the example
 And repeat
 
 ```
-until finished
+Testproblem: mnist_mlp 
+Optimizer: SGD
+lr: [0.01, hampelmann, sonstwie]
+momentum: [0.99, 0.79]
+nesterov: False
+num_epochs: 1
+batch_size: 200
+sbatch_job_name: default
+sbatch_nnodes: 1
+sbatch_ntasks: 1
+sbatch_cpus_per_task: 5
+sbatch_gres: gpu:1080ti:1
+sbatch_partition: test
+sbatch_time: 15:00
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
