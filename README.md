@@ -33,7 +33,7 @@ Additional Paramters for Deeobs Trainingphase - See Deepobs Documentation for De
 Sbatch Parameters - Sbatch Parameters used for the configurations
 ```
 
-Generally it has to be structured like this:
+Enties should generally be structured like this:
 
 ```
 key: value
