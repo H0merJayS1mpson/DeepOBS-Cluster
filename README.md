@@ -12,6 +12,8 @@ TCML-CLuster Account.
 
 ### Running the Interface
 
+### 1.) General Approach
+
 First you will need to generate a Configuration ```.txt``` file. 
 It contains the following:
 
@@ -25,6 +27,8 @@ Additional Paramters for Deeobs Trainingphase - See Deepobs Documentation for De
 Sbatch Parameters - Sbatch Parameters used for the configurations
 ```
 
+### 2.) General info about Entries
+
 Entries should generally be structured like this:
 
 ```
@@ -33,6 +37,8 @@ key: value
 
 Be aware, that you should look up the correct types for the ```value``` as the wrong types will cause a runtime error.
 every ```value``` will be combined with every other ```value``` which is not a singelton. Resulting in every possible combination of given values to be run.
+
+### 3.) Values and how they should look like
 
 Singelton values have to be specified as in:
 
@@ -55,6 +61,9 @@ Non singelton Float or Boolean values may be specified in the following ways:
 representing:
 
 ```(lower, upper, increment)``` 
+
+So for example ```(0.1, 0.5, 0.1)``` would result in the parameters ```[0.1, 0.2, 0.3, 0.4, 0.5]``` to be run in every 
+possible combination with the other parameters.
 
 
 You may use Optimizers coming with pytorch by default like this:
@@ -102,6 +111,7 @@ output: user_specified_outputfolder
 
 ```
 
+## Running the Interface 
 
 
 ## For Infos on Deepobs see:
