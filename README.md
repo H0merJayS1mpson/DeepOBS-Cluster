@@ -25,10 +25,10 @@ Generally it has to be structured like this:
 
 ```
 Testprobmlem Name - See Deepobs Documentation for available Testproblems
-Optimizer class Name
-Optimizer Path
-Optimizer module
-Set of Hyperparameters for the Optimizer
+Optimizer class Name - Name of the optimizer Class
+Optimizer Path - Path to where the optimizer is stored
+Optimizer module - Module description in Python import style
+Set of Hyperparameters for the Optimizer - Hyperparamters the optimizer uses
 Assitional Paramters for Deeobs Trainingphase
 Sbatch Parameters
 ```
