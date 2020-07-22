@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#SBATCH --job-name=${experiment_name}
+#default
+#SBATCH --nodes=${sbatch_nnodes}
+#default 1
+#SBATCH --ntasks=${sbatch_ntasks}
+#default 1
+#SBATCH --cpus-per-task=${sbatch_cpus_per_task}
+#default 5
+#SBATCH --mem-per-cpu=${sbatch_mem_per_cpu}
+#default 10G
+#SBATCH --gres=${sbatch_gres}
+#default gpu:1080ti:1
+
+#SBATCH --partition=${sbatch_partition}
+#default test
+#SBATCH --time=${sbatch_time}
+#default 15:00
+# "minutes:seconds", "hours:minutes:seconds", "days-hours", "days-hours:minutes" and "days-hours:minutes:seconds"
+
+#SBATCH --error=${output}/${experiment_name}.err
+#SBATCH --output=${output}/${experiment_name}.out
+
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=benjamin.hartert@student.uni-tuebingen.de
+
+srun singularity exec --nv /mnt/beegfs/home/hartert/TCML-ubuntu18.04.simg python3 ${runfile} ${configfile}
+#srun python3 ${runfile} ${configfile}
+echo DONE!
