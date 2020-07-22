@@ -4,7 +4,7 @@ Interface for Deeobs on TCML-Cluster
 
 ## Getting Started
 
-Copy Folder into your Cluster /home/usr_name folder. Or copy files into folder of your choice.
+Copy testobs Folder into your Cluster /home/usr_name folder. Or copy files into folder of your choice.
 
 ### Prerequisites
 
@@ -156,9 +156,13 @@ output: user_specified_outputfolder
 
 After you set up the ```my_configurations.txt``` file as described above simply navigate to the copied folder containing the files and type 
 
-``` python3 testobs path_to_configurations_file/my_configurations.txt ```
+``` python3 slurm_obs_clean.py path_to_configurations_file/my_configurations.txt ```
 
 Of course you do not have to specify the path if the ```my_configurations.txt``` file is located in the same folder.
+
+You may also use a different working directory and launch testobs from there:
+
+``` python3 path_to_testobs_folder/slurm_obs_clean.py path_to_configurations_file/my_configurations.txt ```
 
 
 ## For Infos on Deepobs see:
