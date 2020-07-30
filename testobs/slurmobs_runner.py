@@ -37,19 +37,11 @@ class SlurmobsRunner():
         path = process.stdout.decode().strip("\n")
         head, sep, tail = path.partition('\n')
         return head
+        
 
     def __init__(self, d: dict):
         self.d = d
-
-    # with open(sys.argv[1], 'r') as f:
-    #     # HYPERPARAMS_SPECS = dict(x.rstrip().split(None, 1) for x in f)
-    #     for line in f:
-    #         line = line.rstrip('\n')
-    #         (key, val) = line.split(': ')
-    #         try:
-    #             d[key] = literal_eval(val)
-    #         except Exception:
-    #             d[key] = val
+        
 
     def generate_configurations(self):
         self.TESTPROBLEM = self.d.pop('Testproblem')
@@ -95,23 +87,6 @@ class SlurmobsRunner():
             if type(val) is tuple:
                 self.HYPERPARAMS_VALUES.__setitem__(key, np.arange(*val))
 
-        # def iterable(obj):
-        #     try:
-        #         iter(obj)
-        #     except Exception:
-        #         return False
-        #     else:
-        #         return True
-
-        # FÜR SPÄTERE GENERIERUNG DER dicts MUSS JEDER VALUE IM DICTIONARY ALS LISTE VORLIEGEN
-        # for key in HYPERPARAMS_VALUES:
-        #     val = HYPERPARAMS_VALUES.get(key)
-        #     if isinstance(val, np.ndarray):
-        #         HYPERPARAMS_VALUES.__setitem__(key, val.tolist())
-        #     elif isinstance(val, list) or isinstance(val, set):
-        #         pass
-        #     else:
-        #         HYPERPARAMS_VALUES.__setitem__(key, [val])
 
         def single_to_set(dic):
             for key in dic:
@@ -134,7 +109,6 @@ class SlurmobsRunner():
 
         single_to_set(self.HYPERPARAMS_VALUES)
 
-        # single_to_set(ADDITIONAL_PARAMS)# FALLS ZUSÄTZLICHE PARAMETER EINBEZOGEN WERDEN SOLLEN: , **ADDITIONAL_PARAMS
 
         def product_dict(dictionary):
             keys = dictionary.keys()
@@ -147,7 +121,7 @@ class SlurmobsRunner():
                 self.HYPERPARAMS_VALUES))):  # FALLS ZUSÄTZLICHE PARAMETER EINBEZOGEN WERDEN SOLLEN: , **ADDITIONAL_PARAMS
             self.dicts.append(item)
 
-        # EVTL ALLE SPECS AUF None SETZEN, FUNKTIONIERT; ABER UNSCHÖN.
+
         for key in self.dicts[0]:
             self.HYPERPARAMS_SPECS[key] = {'type': (type(self.dicts[0].__getitem__(key))).__name__}
 
