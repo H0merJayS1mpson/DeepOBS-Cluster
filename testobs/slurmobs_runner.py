@@ -71,6 +71,7 @@ class SlurmobsRunner():
                 self.d.pop(param)
 
         for param in runner_sig:
+        print("In slurmobs_runner:", param)
             if self.d.__contains__(param):
                 self.ADDITIONAL_PARAMS[param] = self.d.get(param)
                 self.d.pop(param)
