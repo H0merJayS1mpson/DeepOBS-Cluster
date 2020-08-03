@@ -46,11 +46,11 @@ Every singelton value can be specified as in:
 
 ```some key: x``` 
 
-Or in case of Hyperparameter values may also be specified like:
+In case of Hyperparameters, values have to be specified in Pyhton dictionary style like this:
 
-```some key: [x]``` 
+```hyperparameters: {"some hyperparameter": x, "another hyperparameter": [x], "yet another hyperparameter"; (x, y ,z)}}``` 
 
-x being of any correct type with respect to the key. 
+x being of any correct type with respect to the key and the latter, i.e. ```(x, y, z)``` will be interpreted as a range of values. See below.
 
 Non singelton Float, Integer or Boolean values may be specified in the following ways:
 
@@ -58,7 +58,7 @@ Non singelton Float, Integer or Boolean values may be specified in the following
 
 ```[x, y, z]``` 
 
-#### 2. Range Notation (Float or Integer only):
+#### 2. Range Notation (Float or Integer only, Hyperparameter only):
 
 ```(x, y, z)``` 
 
@@ -66,7 +66,7 @@ representing:
 
 ```(lower, upper, increment)``` 
 
-So for example ```(0.1, 0.5, 0.1)``` would result in the Hyperparameters ```[0.1, 0.2, 0.3, 0.4, 0.5]``` to be run in every 
+So for example ```(0.1, 0.5, 0.1)``` would result in the Hyperparameter values ```[0.1, 0.2, 0.3, 0.4, 0.5]``` to be run in every 
 possible combination with the other Hyperparameters.
 
 ### 4.) Examples and Optimizers
@@ -79,9 +79,7 @@ You may use Optimizers coming with pytorch by default like this:
 ```
 Testproblem: mnist_mlp
 Optimizer: SGD
-lr: 0.01
-momentum: [0.99]
-nesterov: False
+hyperparameters: {'lr': 0.01, 'momentum': [0.99], 'nesterov': False}
 num_epochs: 1
 batch_size: 200
 sbatch_job_name: some_experiment_name
@@ -99,9 +97,7 @@ In case of multiple Hyperparameter values the ```my_configurations.txt``` would 
 ```
 Testproblem: mnist_mlp
 Optimizer: SGD
-lr: [0.01, 0.02]
-momentum: [0.99, 0.79]
-nesterov: False
+hyperparameters: {'lr': [0.01, 0.02], 'momentum': [0.99, 0.79], 'nesterov': False}
 num_epochs: 1
 batch_size: 200
 sbatch_job_name: some_experiment_name
@@ -136,9 +132,7 @@ Testproblem: mnist_mlp
 Optimizer: name_of_optimzer_class
 Optimizer Path: /home/usr_name/user_optimizer/user_optimizer_file.py
 Optimizer Module: user_optimizer.user_optimizer_file.name_of_optimzer_class
-lr: (0.01, 0.05, 0.01)
-momentum: [0.99, 0.79]
-nesterov: False
+hyperparameters: {'lr': (0.01, 0.05, 0.01), 'momentum': [0.99, 0.79], 'nesterov': False}
 num_epochs: 1
 batch_size: 200
 sbatch_job_name: The_jobs_name
