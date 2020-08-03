@@ -162,7 +162,8 @@ You may also use a different working directory and launch testobs from there:
 ## For Infos on Deepobs see:
 
 * [Deepobs Documentation](https://deepobs.readthedocs.io/en/v1.2.0-beta0/) - The DNN Optimizer Benchmark suite
-* [Custom Deepobs](https://github.com/H0merJayS1mpson/deepobscustom) - The DNN Optimizer Benchmark suite modified to be able to run the PAL Optimizer (see [PAL-Optimizer](https://github.com/cogsys-tuebingen/PAL) for further information) as well as allowing to modify the testproblems by altering the weight initializations of the testproblems DNN.
+* [Custom Deepobs](https://github.com/H0merJayS1mpson/deepobscustom) - The DNN Optimizer Benchmark suite modified to be able to run the PAL Optimizer (see [PAL-Optimizer](https://github.com/cogsys-tuebingen/PAL) for further information).
+Additionally the customized deepOBS-version allows to modify the testproblem by altering the weight initializations of the testproblem's DNN.
 
 
 ## Acknowledgments
