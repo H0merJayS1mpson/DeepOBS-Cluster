@@ -34,7 +34,7 @@ Entries of the ```my_configurations.txt``` should generally be structured like t
 ```
 key: value 
 ```
-## ATTENTION WHITESPACE AFTER THE COLON IS MANDATORY AT THIS POINT!!
+#### !!!ATTENTION WHITESPACE AFTER THE COLON IS MANDATORY AT THIS POINT!!!
 
 #### On Hyperparameter values
 
