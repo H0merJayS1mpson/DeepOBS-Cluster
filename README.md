@@ -32,8 +32,10 @@ Sbatch Parameters - Sbatch Parameters used for the configurations
 Entries of the ```my_configurations.txt``` should generally be structured like this:
 
 ```
-key: value
+key: value 
 ```
+## ATTENTION WHITESPACE AFTER THE COLON IS MANDATORY AT THIS POINT!!
+
 #### On Hyperparameter values
 
 Given Multiple Hyperparameters the tool will run every possible combination of the given Hyperparamters (cartesian product).
