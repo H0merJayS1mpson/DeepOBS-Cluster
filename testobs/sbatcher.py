@@ -145,51 +145,33 @@ class sBatcher():
     #     "additional": {"test": [2]}
     # }
 
-    def run_configurations(self, i):
-        """
-        starts a slurm job for each run
-        :param runs: list of type :class:`Run`
-        """
-        if not os.path.exists(self.OUTPUT_DIRECTORY):
-            os.makedirs(self.OUTPUT_DIRECTORY)
-#        if not os.path.exists(self.FILE_DIRECTORY):
-#            os.makedirs(self.FILE_DIRECTORY)
 
-        # generate batch files
-        with open(self.BATCH_FILE_TEMPLATE) as batchTemp:
-            file = batchTemp.read()
-        t = Template(file)
-        batchcontent = t.substitute(runfile=self.entry_file_path, experiment_name=self.sbatch_params['sbatch_job_name'],
-                                    configfile=self.config_file_path, **self.sbatch_params)
-        batch_file_path = self.FILE_DIRECTORY+'/' + self.sbatch_params['sbatch_job_name'] + "_" + str(i) + ".sbatch"
-        with open(batch_file_path, "w+") as batchfile:
-            batchfile.write(batchcontent)
-        batchfile.close()
-        #os.system(f"chmod 775 " + f"'" + batch_file_path + f"'")
-        #os.system("sbatch " + batch_file_path)
-        
 
 class cleaner():
     
-    def __init__(self, runfile, experiment_name, job_dict):
+    def __init__(self, runfile, experiment_name, job_dict, lower, upper):
         self.runfile = runfile
         self.experiment_name = experiment_name
         self.job_dict = job_dict
+        self.lower = lower
+        self.upper = upper
         
         
     
     def clean_up(self):
-        
+
         head = pathfinder("temp.tmp")
         headremover = pathfinder("file_remover.py")
-        headbatch = pathfinder("clean_up.sbatch")
+        batch_file_path = head.rstrip("temp.tmp") + 'clean_up' + str(self.upper) + '.sbatch'
+        #headbatch = pathfinder("clean_up.sbatch")
         
         with open(head) as batchTemp:
             file = batchTemp.read()
         t = Template(file)
-        batchcontent = t.substitute(runfile = headremover, experiment_name = self.experiment_name, job_dict = str(self.job_dict))
-        batch_file_path = headbatch
+        batchcontent = t.substitute(runfile = headremover, experiment_name = self.experiment_name, job_dict = str(self.job_dict),
+                                    lower = self.lower, upper = self.upper, path=batch_file_path)
         with open(batch_file_path, "w+") as batchfile:
             batchfile.write(batchcontent)
-        batchfile.close()  
+        batchfile.close()
+        return batch_file_path
     

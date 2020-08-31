@@ -9,8 +9,11 @@ with open(sys.argv[1], 'r') as f:
     # HYPERPARAMS_SPECS = dict(x.rstrip().split(None, 1) for x in f)
     for line in f:
         line = line.rstrip('\n')
-        (key, val) = line.split(': ', 1)
-        key = key.lower()
+        if ': ' in line:
+            (key, val) = line.split(': ', 1)
+            key = key.lower()
+        elif ':' in line:
+            raise SyntaxError('Missing whitespace folling colon at ' + str(line))
         try:
             d[key] = literal_eval(val)
         except Exception:

@@ -35,6 +35,10 @@ with open(sys.argv[1], 'r') as f:
 
 d = dict(zip(d1,l))
 
+
+print(l)
+print("Hier sollte das d sein:  ", d)
+
 for key in d:
     if key == "additional params" or key == 'hyperparams':
         try:
@@ -68,8 +72,7 @@ runner_sig = inspect.getfullargspec(daa.Runner.run).args
 
 unsupported_params = []
 for param in d['hyperparams']:
-    print(param)
-    if param in runner_sig:
+    if param in optimizer_sig:
         pass
     else:
         unsupported_params.append(param)
@@ -77,12 +80,14 @@ for param in d['hyperparams']:
 for param in unsupported_params:
     d['hyperparams'].pop(param)
 
+
 hyperparams_specs = {}
 
 for key in d["hyperparams"]:
     hyperparams_specs[key] = type(d['hyperparams'][key])
+if 'lr_sched_epochs' in d['additional params']:
+    runner = pt.runners.CustomLearningRateScheduleRunner(optimizer_class, hyperparams_specs)
+else:
+    runner = pt.runners.CustomRunner(optimizer_class, hyperparams_specs)
 
-
-runner = pt.runners.CustomRunner(optimizer_class, hyperparams_specs)
-# print("HIER IST DAS INPUT KEYWORD DICTIONARY:       ", d)
 runner.run(testproblem=d.pop('testproblem'), hyperparams=d.pop('hyperparams'), **d['additional params'])

@@ -7,7 +7,7 @@
 #SBATCH --cpus-per-task=1
 # the job can use and see 4 CPUs (from max 24).
 
-#SBATCH --partition=test
+#SBATCH --partition=day
 # the slurm partition the job is queued to.
 
 #SBATCH --mem-per-cpu=3G
@@ -16,7 +16,7 @@
 #SBATCH --gres=gpu:1
 #the job can use and see 1 GPUs (4 GPUs are available in total on one node)
 
-#SBATCH --time=00:30
+#SBATCH --time=3:30:00
 # the maximum time the scripts needs to run
 # "minutes:seconds", "hours:minutes:seconds", "days-hours", "days-hours:minutes" and "days-hours:minutes:seconds"
 
@@ -31,6 +31,8 @@
 
 #singularity exec --nv /common/singularityImages/TCML-Cuda10_0Tensorflow1_13v2.simg
 
-srun python3 ${runfile} ${experiment_name} ${job_dict}
-echo DONE! DELETE clean_up.sbatch
+srun python3 ${runfile} ${experiment_name} ${job_dict} ${lower} ${upper} 
+echo DONE! 
+rm ${path}
+
 
