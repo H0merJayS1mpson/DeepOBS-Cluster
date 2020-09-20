@@ -225,5 +225,5 @@ output: FINAL
 #SBATCH --error=/mnt/beegfs/home/user/SGD_JOB.err
 #SBATCH --output=/mnt/beegfs/home/user/SGD_JOB.out
 
-srun singularity exec --nv /mnt/beegfs/usr/hartert/TCML_Cuda10.1_Ubuntu18.04_date_11.09._.simg python3.6 thing_to_do.py
+srun singularity exec --nv /mnt/beegfs/usr/TCML_Cuda10.1_Ubuntu18.04.simg python3.6 thing_to_do.py
 ```
