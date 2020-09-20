@@ -211,3 +211,19 @@ sbatch_partition: day
 sbatch_time: 16:30:00
 output: FINAL
 ```
+```
+#!/bin/bash
+
+#SBATCH --job-name=SGD_JOB
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=5
+#SBATCH --mem-per-cpu=10G
+#SBATCH --gres=gpu:1080ti:4
+#SBATCH --partition=day
+#SBATCH --time=16:30:00
+#SBATCH --error=/mnt/beegfs/home/user/SGD_JOB.err
+#SBATCH --output=/mnt/beegfs/home/user/SGD_JOB.out
+
+srun singularity exec --nv /mnt/beegfs/usr/hartert/TCML_Cuda10.1_Ubuntu18.04_date_11.09._.simg python3.6 thing_to_do.py
+```
