@@ -193,7 +193,7 @@ sbatch_time: 16:30:00
 output: shell_outpu_dir
 ```
 ```
-Testproblem: cifar10_resnet32
+Testproblem: cifar10_resnet34
 Optimizer: PalOptimizer
 Optimizer Path: /path/to/optimizer/PAL.py
 Optimizer Module: optimizer.PAL.Paloptimizer
