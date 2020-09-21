@@ -181,35 +181,35 @@ lr_sched_factors: [0.1, 0.1]
 num_epochs: 200
 batch_size: 128
 random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
-initializations: {'Conv2d': ['nn.init.normal_', 0, 0.00125], 'Linear': ['nn.init.normal_', 0, 0.00125]}
-output_dir: FINAL
-sbatch_job_name: SGD_JOB
+initializations: {'Linear': ['nn.init.normal_', 0, 0.00125]}
+output_dir: DeepOBS_ouput_directory
+sbatch_job_name: SGD_example_job
 sbatch_nnodes: 2
 sbatch_ntasks: 2
 sbatch_cpus_per_task: 5
 sbatch_gres: gpu:1080ti:4
 sbatch_partition: day
 sbatch_time: 16:30:00
-output: FINAL
+output: shell_outpu_dir
 ```
 ```
-Testproblem: mnist_mlp
+Testproblem: cifar10_resnet32
 Optimizer: PalOptimizer
-Optimizer Path: /home/hartert/optimopti/PAL_mit_getnextbatch.py
-Optimizer Module: optimopti.PAL.Paloptimizer
+Optimizer Path: /path/to/optimizer/PAL.py
+Optimizer Module: optimizer.PAL.Paloptimizer
 num_epochs: 200
 batch_size: 128
 random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
-initializations: {'Conv2d': ['nn.init.normal_', 0, 0.00125], 'Linear': ['nn.init.normal_', 0, 0.00125]}
-output_dir: FINAL
-sbatch_job_name: PAL_JOB
+initializations: {'Conv2d': ['nn.init.xavier_normal_']}
+output_dir: DeepOBS_ouput_directory
+sbatch_job_name: PAL_Example_job
 sbatch_nnodes: 1
 sbatch_ntasks: 1
 sbatch_cpus_per_task: 5
 sbatch_gres: gpu:1080ti:4
 sbatch_partition: day
 sbatch_time: 16:30:00
-output: FINAL
+output: shell_output_dir
 ```
 ```
 #!/bin/bash
