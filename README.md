@@ -182,7 +182,7 @@ num_epochs: 200
 batch_size: 128
 random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
 initializations: {'Linear': ['nn.init.normal_', 0, 0.00125]}
-output_dir: DeepOBS_ouput_directory
+output_dir: DeepOBS_output_directory
 sbatch_job_name: SGD_example_job
 sbatch_nnodes: 2
 sbatch_ntasks: 2
@@ -190,7 +190,7 @@ sbatch_cpus_per_task: 5
 sbatch_gres: gpu:1080ti:4
 sbatch_partition: day
 sbatch_time: 16:30:00
-output: shell_outpu_dir
+output: shell_output_dir
 ```
 ```
 Testproblem: cifar10_resnet34
@@ -201,7 +201,7 @@ num_epochs: 200
 batch_size: 128
 random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
 initializations: {'Conv2d': ['nn.init.xavier_normal_']}
-output_dir: DeepOBS_ouput_directory
+output_dir: DeepOBS_output_directory
 sbatch_job_name: PAL_Example_job
 sbatch_nnodes: 1
 sbatch_ntasks: 1
