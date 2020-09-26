@@ -200,7 +200,6 @@ Optimizer Module: optimizer.PAL.Paloptimizer
 num_epochs: 200
 batch_size: 128
 random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
-initializations: {'Conv2d': ['nn.init.xavier_normal_']}
 output_dir: DeepOBS_output_directory
 sbatch_job_name: PAL_Example_job
 sbatch_nnodes: 1
