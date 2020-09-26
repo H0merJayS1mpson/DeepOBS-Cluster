@@ -175,7 +175,7 @@ Additionally the customized deepOBS-version allows to modify the testproblem by 
 ```
 Testproblem: mnist_mlp
 Optimizer: SGD
-hyperparameters: {'lr': 0.01, 'momentum': 0.99, 'nesterov': False}
+hyperparameters: {'lr': (0.01, 0.05, 0.01), 'momentum': [0.99, 0.79], 'nesterov': False}
 lr_sched_epochs: [100, 150]
 lr_sched_factors: [0.1, 0.1]
 num_epochs: 200
