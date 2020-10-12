@@ -4,7 +4,7 @@ Interface for Deeobs on TCML-Cluster
 
 ## Getting Started
 
-Copy testobs Folder into your Cluster /home/usr_name folder. Or copy files into folder of your choice.
+Copy DeepOBS_TCML folder into your Cluster /home/usr_name folder. Or copy files into folder of your choice.
 
 ### Prerequisites
 
