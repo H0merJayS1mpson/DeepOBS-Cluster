@@ -148,6 +148,34 @@ output: user_specified_outputfolder
 
 ```
 
+#### 4.3.) Using a learning rate Schedule (and multiple random seeds)
+In case you want to use a learning rate Schedule you need to specify the epochs in which the learning rate should be adapted 
+and with which factor the learning rate shall get multiplied. For example, if you specify the learning rate to be ```0.01``` and that
+it should be decreased after ```100``` epochs, you have to specifiy the factor as in the example below. In the example the learning rate
+gets multiplied by ```0.1``` after ```100``` epochs and once again multplied by ```0.1``` after ```150``` epochs. Also note that in the example below there
+are multiple random seeds specified. This will result in every(!!) hyperparameter combination being run with every specified random seed. Of course in the
+example below there are no multiple hyperparameter combinations. But if you would specify hyperparameters as in the examples above every hyperparameter combination would be run with every random seed.
+
+```
+Testproblem: mnist_mlp
+Optimizer: SGD
+hyperparameters: {'lr': 0.01, 'momentum': [0.99], 'nesterov': False}
+lr_sched_epochs: [100, 150]
+lr_sched_factors: [0.1, 0.1]
+num_epochs: 200
+batch_size: 128
+random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
+output_dir: DeepOBS_output_directory
+sbatch_job_name: SGD_example_job
+sbatch_nnodes: 2
+sbatch_ntasks: 2
+sbatch_cpus_per_task: 5
+sbatch_gres: gpu:1080ti:4
+sbatch_partition: day
+sbatch_time: 16:30:00
+output: shell_output_dir
+```
+
 ## Running the Configurations
 
 After you set up the ```my_configurations.txt``` file as described above simply navigate to the copied folder containing the files and type 
@@ -172,57 +200,3 @@ Additionally the customized deepOBS-version allows to modify the testproblem by 
 
 * Hat tip to anyone whose code was used
 * etc
-```
-Testproblem: mnist_mlp
-Optimizer: SGD
-hyperparameters: {'lr': (0.01, 0.05, 0.01), 'momentum': [0.99, 0.79], 'nesterov': False}
-lr_sched_epochs: [100, 150]
-lr_sched_factors: [0.1, 0.1]
-num_epochs: 200
-batch_size: 128
-random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
-initializations: {'Linear': ['nn.init.normal_', 0, 0.00125]}
-output_dir: DeepOBS_output_directory
-sbatch_job_name: SGD_example_job
-sbatch_nnodes: 2
-sbatch_ntasks: 2
-sbatch_cpus_per_task: 5
-sbatch_gres: gpu:1080ti:4
-sbatch_partition: day
-sbatch_time: 16:30:00
-output: shell_output_dir
-```
-```
-Testproblem: cifar10_resnet34
-Optimizer: PalOptimizer
-Optimizer Path: /path/to/optimizer/PAL.py
-Optimizer Module: optimizer.PAL.Paloptimizer
-num_epochs: 200
-batch_size: 128
-random_seed: [546, 68, 9849, 42, 56, 486943, 666, 999, 17, 23]
-output_dir: DeepOBS_output_directory
-sbatch_job_name: PAL_Example_job
-sbatch_nnodes: 1
-sbatch_ntasks: 1
-sbatch_cpus_per_task: 5
-sbatch_gres: gpu:1080ti:4
-sbatch_partition: day
-sbatch_time: 16:30:00
-output: shell_output_dir
-```
-```
-#!/bin/bash
-
-#SBATCH --job-name=SGD_JOB
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=5
-#SBATCH --mem-per-cpu=10G
-#SBATCH --gres=gpu:1080ti:4
-#SBATCH --partition=day
-#SBATCH --time=16:30:00
-#SBATCH --error=/mnt/beegfs/home/user/SGD_JOB.err
-#SBATCH --output=/mnt/beegfs/home/user/SGD_JOB.out
-
-srun singularity exec --nv /mnt/beegfs/usr/TCML_Cuda10.1_Ubuntu18.04.simg python3.6 thing_to_do.py
-```
